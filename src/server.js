@@ -133,3 +133,7 @@ controller.hears(['food'], ['direct_message', 'direct_mention', 'mention'], (bot
     }
   });
 });
+
+controller.on('outgoing_webhook', (bot, message) => {
+  bot.replyPublic(message, 'yeah yeah');
+});
