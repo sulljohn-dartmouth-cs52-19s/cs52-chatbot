@@ -49,6 +49,7 @@ const port = process.env.PORT || 9090;
 // botkit controller
 const controller = botkit.slackbot({
   debug: false,
+  json_file_store: './db_sulljohn_bot/',
 });
 
 // initialize slackbot
@@ -135,5 +136,6 @@ controller.hears(['food'], ['direct_message', 'direct_mention', 'mention'], (bot
 });
 
 controller.on('outgoing_webhook', (bot, message) => {
+  controller.storage.teams.save({id: message.team, foo:'bar'}, (err) => { console.log(err); });
   bot.replyPublic(message, 'yeah yeah');
 });
